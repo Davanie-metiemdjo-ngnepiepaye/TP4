@@ -1,25 +1,18 @@
-package com.example;
+﻿package com.example;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
-    @Test
-    void testAdd() {
+    @Test void testAdd() { assertEquals(5, new Calculator().add(2, 3)); }
+
+    @Test void testSubtract() { assertEquals(1, new Calculator().subtract(3, 2)); }
+
+    // ✅ Test d’exception : division par zéro
+    @Test void testDivideByZero() {
         Calculator calc = new Calculator();
-        assertEquals(5, calc.add(2, 3));
+        assertThrows(IllegalArgumentException.class, () -> calc.divide(4, 0));
     }
 
-    @Test
-    void testSubtract() {
-        Calculator calc = new Calculator();
-        assertEquals(1, calc.subtract(3, 2)); // Test will fail due to bug
-    }
-
-    @Test
-    void testDivide() {
-        Calculator calc = new Calculator();
-        assertEquals(2, calc.divide(4, 2));
-    }
+    @Test void testDivide() { assertEquals(2, new Calculator().divide(4, 2)); }
 }
-

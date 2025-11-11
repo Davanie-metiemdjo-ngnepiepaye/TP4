@@ -1,26 +1,19 @@
 pipeline {
-    agent any
-    tools {
-        maven 'Maven'
+  agent any
+  tools { maven 'Maven' }
+  stages {
+    stage('Build') {
+      steps { sh 'mvn -q clean package' }
     }
-    stages {
-        stage('Build') {
-            steps {
-                bat 'mvn clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                bat 'mvn test'
-            }
-        }
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    bat 'mvn sonar:sonar -Dsonar.projectKey=my-java-project -Dsonar.host.url=http://sonar:9000'
-                }
-            }
-        }
+    stage('Test') {
+      steps { sh 'mvn -q test' }
     }
+    stage('SonarQube Analysis') {
+      steps {
+        withSonarQubeEnv('SonarQube') {
+          sh 'mvn -q sonar:sonar -Dsonar.projectKey=my-java-project -Dsonar.host.url=http://sonar:9000'
+        }
+      }
+    }
+  }
 }
-

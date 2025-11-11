@@ -3,18 +3,11 @@ pipeline {
   tools { maven 'Maven' }
 
   stages {
-    stage('Build') {
+    stage('Build & Test') {
       steps {
         dir('my-java-project') {
-          sh 'mvn -q clean package'
-        }
-      }
-    }
-
-    stage('Test') {
-      steps {
-        dir('my-java-project') {
-          sh 'mvn -q test'
+          // compile + tests + génère target/site/jacoco/jacoco.xml
+          sh 'mvn -q clean verify'
         }
       }
     }
@@ -23,7 +16,12 @@ pipeline {
       steps {
         dir('my-java-project') {
           withSonarQubeEnv('SonarQube') {
-            sh 'mvn -q sonar:sonar -Dsonar.projectKey=my-java-project -Dsonar.host.url=http://sonar:9000'
+            sh '''
+              mvn -q sonar:sonar \
+                -Dsonar.projectKey=my-java-project \
+                -Dsonar.host.url=http://sonar:9000 \
+                -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+            '''
           }
         }
       }

@@ -1,0 +1,131 @@
+═══════════════════════════════════════════════════════════════
+   INFORMATIONS IMPORTANTES POUR LE TP4
+═══════════════════════════════════════════════════════════════
+
+📅 Date : 11 Novembre 2025
+📁 Emplacement : C:\Users\Davanie\Desktop\Ing lo\Ngnepiepaye\TP4
+
+
+═══════════════════════════════════════════════════════════════
+   ACCÈS AUX SERVICES
+═══════════════════════════════════════════════════════════════
+
+🔵 JENKINS
+   URL : http://localhost:8080
+   Mot de passe initial : 11f8e50816e94fcf9aaa22913ceea2a1
+   
+   Note : Vous devrez créer un compte administrateur après
+          la première connexion
+
+
+🟣 SONARQUBE
+   URL : http://localhost:9000
+   Login par défaut : admin
+   Password par défaut : admin
+   
+   Note : SonarQube vous demandera de changer le mot de passe
+          lors de la première connexion
+
+
+═══════════════════════════════════════════════════════════════
+   COMMANDES DOCKER UTILES
+═══════════════════════════════════════════════════════════════
+
+▶ Démarrer les conteneurs :
+   docker-compose up -d
+
+▶ Arrêter les conteneurs :
+   docker-compose down
+
+▶ Voir l'état des conteneurs :
+   docker-compose ps
+
+▶ Voir les logs Jenkins :
+   docker logs tp4-jenkins-1
+
+▶ Voir les logs SonarQube :
+   docker logs tp4-sonar-1
+
+▶ Redémarrer Jenkins :
+   docker restart tp4-jenkins-1
+
+▶ Redémarrer SonarQube :
+   docker restart tp4-sonar-1
+
+
+═══════════════════════════════════════════════════════════════
+   TOKEN SONARQUBE POUR JENKINS
+═══════════════════════════════════════════════════════════════
+
+Token généré : [COLLEZ VOTRE TOKEN ICI APRÈS L'AVOIR CRÉÉ]
+
+
+═══════════════════════════════════════════════════════════════
+   STRUCTURE DU PROJET
+═══════════════════════════════════════════════════════════════
+
+TP4/
+├── docker-compose.yml          ✅ Créé
+├── INFORMATIONS_IMPORTANTES.txt ✅ Ce fichier
+└── my-java-project/
+    ├── src/
+    │   ├── main/java/com/example/
+    │   │   └── Calculator.java     ✅ Créé (avec bugs intentionnels)
+    │   └── test/java/com/example/
+    │       └── CalculatorTest.java ✅ Créé
+    ├── pom.xml                     ✅ Créé
+    └── Jenkinsfile                 ✅ Créé
+
+
+═══════════════════════════════════════════════════════════════
+   PROCHAINES ÉTAPES
+═══════════════════════════════════════════════════════════════
+
+✅ 1. Conteneurs Docker démarrés
+✅ 2. Connexion à SonarQube réussie
+⏳ 3. Créer un token SonarQube pour Jenkins
+⏳ 4. Configurer Jenkins (installer plugins)
+⏳ 5. Connecter Jenkins à SonarQube
+⏳ 6. Créer le pipeline Jenkins
+⏳ 7. Lancer l'analyse du code
+⏳ 8. Corriger les bugs détectés
+⏳ 9. Relancer l'analyse
+
+
+═══════════════════════════════════════════════════════════════
+   BUGS INTENTIONNELS DANS Calculator.java
+═══════════════════════════════════════════════════════════════
+
+1. Méthode subtract() : Retourne a - b + 1 au lieu de a - b
+2. Méthode divide() : Pas de gestion de la division par zéro
+3. Méthode unusedMethod() : Méthode jamais utilisée
+4. Méthode multiply() : Complexité cyclomatique élevée
+
+
+═══════════════════════════════════════════════════════════════
+   CORRECTIONS À APPORTER
+═══════════════════════════════════════════════════════════════
+
+1. Corriger subtract() : return a - b;
+2. Ajouter vérification dans divide() :
+   if (b == 0) throw new IllegalArgumentException(...);
+3. Supprimer unusedMethod()
+4. Ajouter tests pour division par zéro et multiply
+
+
+═══════════════════════════════════════════════════════════════
+   NOTES IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+⚠️ L'avertissement jaune sur SonarQube concernant la base de 
+   données embarquée est normal pour un environnement de test.
+
+⚠️ Assurez-vous que Docker Desktop est toujours en cours 
+   d'exécution avant de lancer les commandes docker-compose.
+
+⚠️ Sauvegardez le token SonarQube, vous ne pourrez plus le voir
+   une fois la fenêtre fermée !
+
+
+═══════════════════════════════════════════════════════════════
+
